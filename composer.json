@@ -20,5 +20,10 @@
     "scripts": {
         "phpcs": "phpcs",
         "phpcbf": "phpcbf"
+    },
+    "autoload": {
+        "files": [
+            "src/run.php"
+        ]
     }
 }
