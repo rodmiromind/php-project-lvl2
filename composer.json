@@ -1,0 +1,17 @@
+{
+    "name": "piston/php-project-lvl2",
+    "description": "hexlet project 2",
+    "type": "project",
+    "authors": [
+        {
+            "name": "notebook",
+            "email": "onetreearmy@gmail.com"
+        }
+    ],
+    "bin" :[
+        "bin/gendiff"
+    ],
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
+}
