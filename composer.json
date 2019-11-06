@@ -23,7 +23,7 @@
     },
     "autoload": {
         "files": [
-            "src/run.php"
+            "src/genDiff.php"
         ]
     }
 }

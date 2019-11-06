@@ -1,8 +1,8 @@
 <?php
 
-namespace GenDiff\src\run;
+namespace Differ\src\genDiff;
 
-function run($firstFilePath, $secondFilePath)
+function genDiff($firstFilePath, $secondFilePath)
 {
     $firstFile = json_decode(file_get_contents(realpath($firstFilePath)), true);
     $secondFile = json_decode(file_get_contents(realpath($secondFilePath)), true);
@@ -19,8 +19,8 @@ function run($firstFilePath, $secondFilePath)
         }
     }
     
-    foreach ($a as $key => $item) {
-        if (!array_key_exists($key, $b)) {
+    foreach ($secondFile as $key => $item) {
+        if (!array_key_exists($key, $firstFile)) {
             $result['+ ' . $key] = $item;
         }
     }
@@ -33,6 +33,5 @@ function run($firstFilePath, $secondFilePath)
         $resultForPrint .= "  $key: $item\n";
     }
     $resultForPrint .= "}";
-    echo $resultForPrint;
     return $resultForPrint;
 }
