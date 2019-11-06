@@ -9,7 +9,8 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-GenDiff\src\run\run($argv[1], $argv[2]);
+use function GenDiff\src\run\run;
+
 
 $doc = <<<DOC
 Generate diff
@@ -27,5 +28,6 @@ Options:
 DOC;
 
 $args = Docopt::handle($doc, array('version'=>'Generate Diff 1.0'));
-foreach ($args as $k=>$v)
-    echo $k.': '.json_encode($v).PHP_EOL;
+if ($args['<firstFile>'] && $args['<secondFile>']) {
+    run($args['<firstFile>'], $args['<secondFile>']);
+}
