@@ -1,6 +1,6 @@
 <?php
 
-namespace Differ\src\genDiff;
+namespace Differ\genDiff;
 
 function genDiff($firstFilePath, $secondFilePath)
 {

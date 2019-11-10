@@ -9,7 +9,7 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-use function Differ\src\genDiff\genDiff;
+use function Differ\genDiff\genDiff;
 
 
 $doc = <<<DOC
