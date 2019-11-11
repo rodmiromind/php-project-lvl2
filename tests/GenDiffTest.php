@@ -1,20 +1,11 @@
 <?php
 
-namespace Differ;
+namespace Differ\Tests;
 
-// $autoloadPath1 = __DIR__ . '/../../../autoload.php';
-// $autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
-// if (file_exists($autoloadPath1)) {
-//     require_once $autoloadPath1;
-// } else {
-//     require_once $autoloadPath2;
-// }
-// require_once __DIR__ . "./../src/genDiff.php";
-require_once __DIR__ . './../vendor/autoload.php';
-use function Differ\genDiff\genDiff;
 use PHPUnit\Framework\TestCase;
+use function Differ\genDiff\genDiff;
 
-class genDiffTest extends TestCase
+class GenDiffTest extends TestCase
 {
     protected $firstFile;
     protected $secondFile;

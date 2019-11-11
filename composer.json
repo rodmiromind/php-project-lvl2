@@ -20,7 +20,8 @@
     },
     "scripts": {
         "phpcs": "phpcs",
-        "phpcbf": "phpcbf"
+        "phpcbf": "phpcbf",
+        "phpunit": "phpunit"
     },
     "autoload": {
         "files": [
