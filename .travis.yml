@@ -1,3 +1,7 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=53452879f5fac0cd512366216c7380a500a9ca1f93bd4425fbadae5e211840a3
+
 language: php
 
 install:
@@ -12,4 +16,3 @@ script: make lint test
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  
