@@ -25,7 +25,9 @@
     },
     "autoload": {
         "files": [
-            "src/genDiff.php"
+            "src/genDiff.php",
+            "src/run.php",
+            "src/parsers.php"
         ]
     }
 }
