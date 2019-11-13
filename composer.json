@@ -12,7 +12,8 @@
         "bin/gendiff"
     ],
     "require": {
-        "docopt/docopt": "^1.0"
+        "docopt/docopt": "^1.0",
+        "symfony/yaml": "^4.3"
     },
     "require-dev": {
         "squizlabs/php_codesniffer" : "*",

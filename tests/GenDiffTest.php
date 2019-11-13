@@ -14,13 +14,16 @@ class GenDiffTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->firstFile = __DIR__ . '/fixtures/before.json';
-        $this->secondFile = __DIR__ . '/fixtures/after.json';
+        $this->firstJsonFile = __DIR__ . '/fixtures/before.json';
+        $this->secondJsonFile = __DIR__ . '/fixtures/after.json';
+        $this->firstYmlFile = __DIR__ . '/fixtures/before.yml';
+        $this->secondYmlFile = __DIR__ . '/fixtures/after.yml';
         $this->result = file_get_contents("fixtures/result", true);
     }
 
     public function testGenDiff(): void
     {
-        $this->assertEquals($this->result, genDiff($this->firstFile, $this->secondFile));
+        $this->assertEquals($this->result, genDiff($this->firstJsonFile, $this->secondJsonFile));
+        $this->assertEquals($this->result, genDiff($this->firstYmlFile, $this->secondYmlFile));
     }
 }
