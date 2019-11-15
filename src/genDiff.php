@@ -2,10 +2,12 @@
 
 namespace Differ\genDiff;
 
+use function Differ\parsers\fileParse;
+
 function genDiff($firstFilePath, $secondFilePath)
 {
-    $firstFile = json_decode(file_get_contents(realpath($firstFilePath)), true);
-    $secondFile = json_decode(file_get_contents(realpath($secondFilePath)), true);
+    $firstFile = fileParse($firstFilePath);
+    $secondFile = fileParse($secondFilePath);
     $result = [];
     
     foreach ($firstFile as $key => $item) {
