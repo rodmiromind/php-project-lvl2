@@ -22,13 +22,17 @@
     "scripts": {
         "phpcs": "phpcs",
         "phpcbf": "phpcbf",
-        "phpunit": "phpunit"
+        "phpunit": "phpunit",
+        "test": "phpunit tests"
     },
     "autoload": {
         "files": [
             "src/genDiff.php",
             "src/run.php",
             "src/parsers.php"
-        ]
+        ],
+        "psr-4": {
+            "Differ\\Tests\\": "tests"
+        }
     }
 }
