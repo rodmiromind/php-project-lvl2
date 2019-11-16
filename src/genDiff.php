@@ -1,6 +1,6 @@
 <?php
 
-namespace Differ\genDiff;
+namespace Differ;
 
 use function Differ\parsers\fileParse;
 

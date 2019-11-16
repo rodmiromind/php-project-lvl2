@@ -18,10 +18,10 @@ function ymlParser($filePath)
 
 function fileParse($filePath)
 {
-    $path = pathinfo($filePath);
-    if ($path[extension] === 'json') {
+    $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
+    if ($fileExtension === 'json') {
         return jsonParser($filePath);
-    } elseif ($path[extension] === 'yml') {
+    } elseif ($fileExtension === 'yml') {
         return ymlParser($filePath);
     }
 }

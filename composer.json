@@ -8,9 +8,6 @@
             "email": "onetreearmy@gmail.com"
         }
     ],
-    "bin" :[
-        "bin/gendiff"
-    ],
     "require": {
         "docopt/docopt": "^1.0",
         "symfony/yaml": "^4.3"
@@ -21,18 +18,17 @@
     },
     "scripts": {
         "phpcs": "phpcs",
-        "phpcbf": "phpcbf",
         "phpunit": "phpunit",
         "test": "phpunit tests"
     },
     "autoload": {
         "files": [
+            "src/parsers.php",
             "src/genDiff.php",
-            "src/run.php",
-            "src/parsers.php"
-        ],
-        "psr-4": {
-            "Differ\\Tests\\": "tests"
-        }
-    }
+            "src/run.php"
+        ]
+    },
+    "bin" :[
+        "bin/gendiff"
+    ]
 }

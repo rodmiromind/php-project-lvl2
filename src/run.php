@@ -3,9 +3,11 @@
 namespace Differ\run;
 
 use Docopt;
-use function Differ\genDiff\genDiff;
+use function Differ\genDiff;
 
-$doc = <<<DOC
+function run()
+{
+  $doc = <<<DOC
 Generate diff
 
 Usage:
@@ -20,8 +22,10 @@ Options:
 
 DOC;
 
-$args = Docopt::handle($doc, array('version'=>'Generate Diff 1.0'));
-if ($args['<firstFile>'] && $args['<secondFile>']) {
-    $diff = genDiff($args['<firstFile>'], $args['<secondFile>']);
-    echo $diff;
+    $args = Docopt::handle($doc, array('version'=>'Generate Diff 1.0'));
+      if ($args['<firstFile>'] && $args['<secondFile>']) {
+        $diff = genDiff($args['<firstFile>'], $args['<secondFile>']);
+        echo $diff;
+      }
 }
+
