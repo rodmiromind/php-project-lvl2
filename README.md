@@ -4,3 +4,6 @@
 php-project-lvl2
 Step 3:
 [![asciicast](https://asciinema.org/a/JSr6QKECFO6mcQRKZCZodtM10.png)](https://asciinema.org/a/JSr6QKECFO6mcQRKZCZodtM10)
+Step 5:
+[![asciicast](https://asciinema.org/a/9RivPv9DiKeD0xSbVMB78nCgw.png)](https://asciinema.org/a/9RivPv9DiKeD0xSbVMB78nCgw)
+
