@@ -5,59 +5,52 @@ namespace Differ;
 use function Differ\parsers\fileParse;
 use Funct;
 
-// переписать эти 2 функции в одну
+function array_keys_recursive($firstFile) {
+  foreach($firstFile as $key => $value) {
+      $result[] = $key;
+      if(is_array($value)){
+          $result = array_merge($result, array_keys_recursive($value));
+      }
+  }
+  return $result;
+}
 
-// function diffFrom1to2($before, $after)
-// {
-//     foreach($before as $key => $value) {
-//         if (!is_array($value) && array_key_exists($key, $after)) {
-//           if ($value !== $after[$key]) {
-//             $result[$key] = [[$value, 'removed'], [$after[$key], 'added']];
-//           } else {
-//             $result[$key] = [$value, 'not changed'];
-//           }
-//         } elseif (array_key_exists($key, $after)) {
-//           $result[$key] = array_diff_assoc_recursive($value, $after[$key]);
-//         } else {
-//           $result[$key] = [$value, 'removed'];
-//         }
-//       }
-    
-//     return $result;
-// }
-
-// function diffFrom2to1($after, $before)
-// {
-//     foreach($after as $key => $value) {
-//         if (!array_key_exists($key, $before)) {
-//           $result[$key] = [$value, 'added'];
-//         } elseif (is_array($value) && array_key_exists($key, $before)) {
-//           $new_diff = array_diff_assoc_recursive2($value, $before[$key]);
-//           if($new_diff != FALSE) {
-//             $result[$key] = $new_diff;
-//           }
-          
-//         }
-//       }
-      
-//     return $result;
-// }
+function makeNode($key, $value, $action, $children = null)
+{
+  return [
+    "key" => $key,
+    "value" => $value,
+    "action" => $action,
+    "children" => $children
+    ];
+}
 
 function diff($firstFile, $secondFile)
 {
   // var_dump($firstFile, $secondFile);
-
-  function array_keys_recursive($firstFile) {
-    foreach($firstFile as $key => $value) {
-        $result[] = $key;
-        if(is_array($value)){
-            $result = array_merge($result, array_keys_recursive($value));
+  $keys = Funct\Collection\union(array_keys_recursive($firstFile), array_keys_recursive($secondFile));
+  
+  $result = array_reduce($keys, function ($acc, $key) use ($firstFile, $secondFile) {
+    if (array_key_exists($key, $firstFile) && (array_key_exists($key, $secondFile)) && is_array($firstFile[$key])) {
+            $acc[] = makeNode($key, null, "nested", diff($firstFile[$key], $secondFile[$key]));
+      return $acc;
+    } elseif (array_key_exists($key, $firstFile) && !array_key_exists($key, $secondFile)) {
+      $acc[] = makeNode($key, $firstFile[$key], "removed");
+    } elseif (!array_key_exists($key, $firstFile) && array_key_exists($key, $secondFile)) {
+      $acc[] = makeNode($key, $secondFile[$key], "added");
+    } elseif (array_key_exists($key, $firstFile) && array_key_exists($key, $secondFile)) {
+        if ($firstFile[$key] === $secondFile[$key]) {
+          $acc[] = makeNode($key, $firstFile[$key], "not changed");
+        } else {
+          $acc[] = makeNode($key, $firstFile[$key], "removed");
+          $acc[] = makeNode($key, $secondFile[$key], "added");
         }
     }
-    return $result;
-  }
-  $keys = Funct\Collection\union(array_keys_recursive($firstFile), array_keys_recursive($secondFile));
-  var_dump($keys);
+    return $acc;
+
+}, []);
+
+return $result;
 }
 
 
@@ -72,5 +65,5 @@ function genDiff($firstFilePath, $secondFilePath)
     
     // $diffData = array_merge_recursive($resultDiff1to2, $resultDiff2to1);
     $a = diff($firstFile, $secondFile);
-    // var_dump($a);
+    print_r($a);
 }
